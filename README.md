@@ -55,7 +55,7 @@ ansible_ssh_pass=PASSWORD
 # Взаимодействие с переменными
 Перед настройкой нового mikrotik необходимо изменить данные в *динамических переменных*, согласно порядку настройки соответствующего клиента под которого готовится оборудование, так же прописать IP адрес если он отличается от стандартного в *hosts* файле
 
-[Содержимое файла hosts](https://gitlab)
+[Содержимое файла hosts](https://github.com/bigorado/ansible-for-mikrotik/blob/main/hosts)
 
 pre_routers ansible_host - запускает tasks под пользователейм admin
 
@@ -96,7 +96,7 @@ new_routers - запускает tasks под пользователем ansible
 
     #Указать ip роутера клиента до куда будет строиться маршрут
     [router_l2tp_server_client]
-    client_mikrotik ansible_host=
+    client_mikrotik ansible_host=IPADDRESS
 
     [router_l2tp_server_client:vars]
     ansible_connection=ansible.netcommon.network_cli
@@ -109,12 +109,12 @@ new_routers - запускает tasks под пользователем ansible
 
 ## Виды переменных
 
-[Описание](https://gitlab)
+[Описание](https://github.com/bigorado/ansible-for-mikrotik/blob/main/group_vars/README.md)
 
-[Содержимое файла dinamic_vars.yml](https://gitlab)
+[Содержимое файла dinamic_vars.yml]([https://github.com/bigorado/ansible-for-mikrotik/blob/main/group_vars/dinamic_vars.yml)
 
 
-[Содержимое файла static_vars.yml](https://gitlab)
+[Содержимое файла static_vars.yml](https://github.com/bigorado/ansible-for-mikrotik/blob/main/group_vars/static_vars.yml)
 
 
 # Примеры запуска play-books
