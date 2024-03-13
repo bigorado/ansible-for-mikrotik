@@ -1,7 +1,7 @@
 ---
 #Создание учетки ppp и l2tp тунеля до сервера клиента
 - hosts: router_l2tp_server_client
- vars_files:
+  vars_files:
    - group_vars/static_vars.yml
    - group_vars/dinamic_vars.yml
 routers_new
