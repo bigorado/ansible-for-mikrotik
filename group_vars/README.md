@@ -6,4 +6,4 @@
 
 **Динамические переменные** меняются в зависимости от клиента, о значениях можно узнать в файле [dinamic_vars.yml](https://github.com/bigorado/ansible-for-mikrotik/blob/main/group_vars/dinamic_vars.yml). 
 
-**Полное описание переменных** [roles/README.md](https://github.com/bigorado/ansible-for-mikrotik/blob/main/roles/README.md)
+**Полное описание переменных из каждой roles** [roles/README.md](https://github.com/bigorado/ansible-for-mikrotik/blob/main/roles/README.md)
