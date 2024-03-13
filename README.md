@@ -114,7 +114,7 @@ new_routers - запускает tasks под пользователем ansible
 
 [Описание](https://github.com/bigorado/ansible-for-mikrotik/blob/main/group_vars/README.md)
 
-[Содержимое файла dinamic_vars.yml]([https://github.com/bigorado/ansible-for-mikrotik/blob/main/group_vars/dinamic_vars.yml)
+[Содержимое файла dinamic_vars.yml](https://github.com/bigorado/ansible-for-mikrotik/blob/main/group_vars/dinamic_vars.yml)
 
 
 [Содержимое файла static_vars.yml](https://github.com/bigorado/ansible-for-mikrotik/blob/main/group_vars/static_vars.yml)
