@@ -1,0 +1,6 @@
+---
+- name: Delete ip 192.168.88.1
+  community.routeros.command:
+    commands:
+#Удаляет стандартную сеть
+      - /ip address remove [find network=192.168.88.0]

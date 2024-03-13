@@ -1,0 +1,6 @@
+---
+- name: Setup DDNS
+  community.routeros.command:
+    commands:
+#Настройка доступа по DDNS
+      - /ip cloud set ddns-enabled=yes ddns-update-interval={{ddns_interval}}

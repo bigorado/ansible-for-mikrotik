@@ -1,0 +1,7 @@
+---
+- name: Setup L2TP tunnel to client server
+  community.routeros.command:
+    commands:
+#Настройка l2tp подключения до сервера
+      - /interface l2tp-client add connect-to={{client_srv}} disabled=no name={{l2tp_name_office}} user={{l2tp_user}} password={{l2tp_pass}}
+      - /ip route add disabled=no distance=1 dst-address={{network_server_client}}/24 gateway={{l2tp_gateway_to_srv_client}} pref-src="" routing-table=main scope=30 suppress-hw-offload=no target-scope=10

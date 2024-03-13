@@ -1,0 +1,10 @@
+---
+- name: Firewall rules BruteForce shield
+  community.routeros.command:
+    commands:
+# Настройка BruteForce, после 3 попыток входа с ошибкой логина или пароля, IP попадает в winbox_blacklist
+      - /ip firewall filter add action=drop chain=input comment="drop winbox brute forcers" dst-port={{winbox_port}} protocol=tcp src-address-list=winbox_blacklist
+      - /ip firewall filter add action=add-src-to-address-list address-list=winbox_blacklist address-list-timeout={{winbox_blacklist}} chain=input connection-state=new dst-port={{winbox_port}} protocol=tcp src-address-list=winbox_stage3
+      - /ip firewall filter add action=add-src-to-address-list address-list=winbox_stage3 address-list-timeout={{winbox_blacklist_s3}} chain=input connection-state=new dst-port={{winbox_port}} protocol=tcp src-address-list=winbox_stage2
+      - /ip firewall filter add action=add-src-to-address-list address-list=winbox_stage2 address-list-timeout={{winbox_blacklist_s2}} chain=input connection-state=new dst-port={{winbox_port}} protocol=tcp src-address-list=winbox_stage1
+      - /ip firewall filter add action=add-src-to-address-list address-list=winbox_stage1 address-list-timeout={{winbox_blacklist_s1}} chain=input connection-state=new dst-port={{winbox_port}} protocol=tcp

@@ -1,0 +1,6 @@
+---
+- name: Setup email settings
+  community.routeros.command:
+    commands:
+# Настройка отправки SMTP
+      - /tool e-mail set from={{smtp_login}} port={{smtp_port}} server={{smtp_server}} tls=yes user={{smtp_login}} password={{smtp_pass}}

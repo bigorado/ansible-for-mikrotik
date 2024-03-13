@@ -1,0 +1,2 @@
+    /system package update set channel=upgrade
+    /system package update download

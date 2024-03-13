@@ -1,0 +1,5 @@
+---
+- name: Identity name
+  community.routeros.command:
+    commands:
+      - /system identity set name={{identity_name}}

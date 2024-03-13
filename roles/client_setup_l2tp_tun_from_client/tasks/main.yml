@@ -1,0 +1,7 @@
+---
+- name: Setup L2TP tunnel to client server
+  community.routeros.command:
+    commands:
+#Настройка l2tp подключения до сервера
+      - /ppp secret add local-address={{l2tp_gateway_to_srv_client}} name={{l2tp_user}} password={{l2tp_pass}}  profile=l2tp remote-address={{l2tp_gateway_to_client_client}} service=l2tp
+      - /ip route add disabled=no distance=1 dst-address={{network_new}}/24 gateway={{l2tp_gateway_to_client_client}} scope=30 target-scope=10

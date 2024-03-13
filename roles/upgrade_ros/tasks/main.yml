@@ -1,0 +1,7 @@
+---
+- name: Upgrade ROS
+  community.routeros.command:
+    commands:
+#Обновление до 7 версии ROS
+      - /system package update set channel=upgrade
+      - /system package update download

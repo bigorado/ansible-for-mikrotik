@@ -1,0 +1,10 @@
+---
+- name: Setting auto backup to e-mail
+  community.routeros.command:
+    commands:
+#Добавление скрипта для создания backup и отправки его не почту
+      - /system script add dont-require-permissions=no name=full_backup owner={{new_user_name}} policy=ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source="/system backup save name={{identity_name}}.backup password=\"{{pass_backup}}\";\r\n:delay 15s;\r\n/tool e-mail send to=\"{{mail_to_send}}\" subject \"{{identity_name}} Mikro-backup \$d \$t\" file=\"{{identity_name}}.backup\";\r\n:delay 10s;"
+#Задача на отправку бекапа каждые 7 дней на почту, дни можно поменять в переменных
+      - /system scheduler add interval={{sheldure_interval}} name=full_backup on-event=full_backup policy=ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon start-date=2024-01-01 start-time=00:00:00
+#Запуск скрипта в первый раз, если пришло на почту письмо, значит всё работает
+      - /system script run full_backup

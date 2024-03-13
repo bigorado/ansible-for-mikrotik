@@ -1,0 +1,62 @@
+---
+#Преднастройка роутера, для возможности работы с ним не от пользователя admin
+- hosts: routers_pre_setup
+  vars_files:
+    - group_vars/static_vars.yml
+    - group_vars/dinamic_vars.yml
+  gather_facts: false
+  roles:
+    - add_user
+
+#Базовая настройка роутера
+- hosts: routers_new
+  vars_files:
+    - group_vars/static_vars.yml
+    - group_vars/dinamic_vars.yml
+  gather_facts: false
+  roles:
+    - setup_identity
+    - setup_bruteforce
+    - setup_firewall
+    - setup_nat
+    - setup_ddns
+    - setup_services
+    - setup_wifi
+    - setup_email_server
+    - setup_network
+    - setup_l2tp_server
+    - setup_l2tp_tun_to_srv
+    - add_ppp_l2tp_user
+    - setup_backup_script
+    - setup_notification_telegram
+    - client_setup_l2tp_tun_to_srv
+
+#Создание учетки ppp и l2tp тунеля до нашего сервера
+- hosts: routers_l2tp_server
+  vars_files:
+    - group_vars/static_vars.yml
+    - group_vars/dinamic_vars.yml
+  gather_facts: false
+  roles:
+    - setup_l2tp_tun_from_client
+
+#Создание тунеля у клиента
+- hosts: router_l2tp_server_client
+  vars_files:
+    - group_vars/static_vars.yml
+    - group_vars/dinamic_vars.yml
+  gather_facts: false
+  roles:
+    - client_setup_l2tp_tun_from_client
+
+#Удаляет дефолтный ip 192.168.88.1 в конце всегда выдает ошибку, так как прерывается коннетк
+- hosts: routers_new
+  vars_files:
+    - group_vars/static_vars.yml
+    - group_vars/dinamic_vars.yml
+  gather_facts: false
+  roles:
+    - delete_default_ip
+
+
+

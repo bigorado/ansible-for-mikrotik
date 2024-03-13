@@ -1,0 +1,8 @@
+---
+- name: Services settings
+  community.routeros.command:
+    commands:
+# Настройка Services
+      - /ip service set www address=192.168.0.0/16,10.0.0.0/8,{{ip_office}},{{ip_rezerv1}},{{ip_rezerv2}},{{ip_rezerv3}}
+      - /ip service set ssh address=192.168.0.0/16,10.0.0.0/8,{{ip_office}},{{ip_rezerv1}},{{ip_rezerv2}},{{ip_rezerv3}}
+      - /ip service set winbox address=192.168.0.0/16,10.0.0.0/8,{{ip_office}},{{ip_rezerv1}},{{ip_rezerv2}},{{ip_rezerv3}}

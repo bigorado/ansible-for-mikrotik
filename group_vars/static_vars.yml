@@ -1,0 +1,58 @@
+---
+#Статические переменные
+#Пароль пользователя admin, который установится после прохода play-book
+new_admin_pass: PASSWORD
+old_admin_pass: PASSWORD
+#Порты доступа ssh, winbox
+ansible_ssh_port: 22
+winbox_port: 8291
+#Интервалы в bruteforce
+winbox_blacklist_s1: 10m
+winbox_blacklist_s2: 8m
+winbox_blacklist_s3: 5m
+winbox_blacklist: 4w2d
+#Интервал обновления cloud ddns mikrotik
+ddns_interval: 1m
+#Частоты WiFi
+frequency_2g: 2417
+frequency_5g: 5180
+#Сила WiFi
+tx-power_2g: 20
+tx-power_5g: 20
+#Настройки email для отправки писем
+smtp_port: 25
+smtp_server: smtp.mail.ru
+smtp_login: mikroti1k@mail.ru
+smtp_pass: PASSWORD
+#Почта на которую будут приходить письма с backup
+mail_to_send: mikrotik2@mail.ru
+#Маски сети в firewall и в dhcp
+network_mask_fw: 8
+network_mask_lan: 24
+network_server: IPADDRESS
+#Список адресов для добавление в services
+ip_office: IPADDRESS
+ip_rezerv1: IPADDRESS
+ip_rezerv2: IPADDRESS
+ip_rezerv3: IPADDRESS
+dstnat_ip: IPADDRESS
+dstnat_port: PORT
+nat_to_port: PORT
+#DNS
+dns1: 77.88.8.8
+dns2: 8.8.8.8
+#Пароль который устанавливается на backup файл который отправляется на почту
+pass_backup: PASSWORD
+#Адрес до основного l2tp сервера
+l2tp_name: L2TP-NAME
+l2tp_address: IPADDRESS
+ipsec_secret: PASSWORD
+#Количество дней через сколько будет срабатывать скрипт на backup
+sheldure_interval: 7d
+#Настройки уведомлений в telegram
+bot_token: https://api.telegram.org/botXXXXXXXXXXX:XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+id_chat: -IDCHAT
+interval_netwatch: 20s
+#Статическая переменная для mikrotik у клиента
+l2tp_name_office: l2tp-out-office
+

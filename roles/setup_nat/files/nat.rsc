@@ -1,0 +1,1 @@
+/ip firewall nat add action=netmap chain=dstnat dst-address=192.168.0.1 dst-port=8000 protocol=tcp src-address-list="allow" to-addresses=192.168.0.2 to-ports=22

@@ -1,0 +1,13 @@
+---
+- name: RouterOS with network_cli connection
+  hosts: routers_new
+  vars_files:
+    - group_vars/static_vars.yml
+    - group_vars/dinamic_vars.yml
+  gather_facts: false
+  tasks:
+#Запуск задачи резервного копирования по всем хостам
+  - name: All backup
+    community.routeros.command:
+      commands:
+        - /system script run full_backup

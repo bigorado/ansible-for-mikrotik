@@ -1,0 +1,6 @@
+---
+- name: Setup PPPOE
+  community.routeros.command:
+    commands:
+#Настройка PPPOE
+      - /interface pppoe-client add add-default-route=yes disabled=no interface=ether1 name={{pppoe_name}} service-name=pppoe use-peer-dns=yes user={{pppoe_login}} password={{pppoe_pass}}

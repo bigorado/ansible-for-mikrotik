@@ -1,0 +1,6 @@
+---
+- name: NAT rules
+  community.routeros.command:
+    commands:
+# Настройка NAT, примеры пробросов портов
+      - /ip firewall nat add action=netmap chain=dstnat dst-address={{dstnat_ip}} dst-port={{dstnat_port}} protocol=tcp src-address-list="allow" to-addresses=192.168.0.2 to-ports={{nat_to_port}}

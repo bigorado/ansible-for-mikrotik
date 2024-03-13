@@ -1,0 +1,6 @@
+---
+- name: Setup telegram notification
+  community.routeros.command:
+    commands:
+#Настройка оповещений в телеграм
+      - /tool netwatch add down-script="tool fetch url=\"{{bot_token}}/sendMessage\?chat_id={{id_chat}}&text={{netwatch_down}}\" dst-path=telegram.txt" host={{ip_netwatch_host}} interval={{interval_netwatch}} type=simple up-script="tool fetch url=\"{{bot_token}}/sendMessage\?chat_id={{id_chat}}&text={{netwatch_up}}\" dst-path=telegram.txt"

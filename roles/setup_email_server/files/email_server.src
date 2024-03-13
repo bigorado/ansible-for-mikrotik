@@ -1,0 +1,3 @@
+/tool e-mail
+set from=YOUR@mail.ru port=25 address=smtp.mail.ru tls=yes user=\
+    YOUR@mail.ru password=PASSWORD

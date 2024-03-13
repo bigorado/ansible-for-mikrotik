@@ -1,0 +1,8 @@
+/system script
+add dont-require-permissions=no name=full_backup owner=admin policy=\
+    ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source="/\
+    system backup save name=\"NAME.backup\" password=\"PASSWORD\";\r\
+    \n:delay 15s;\r\
+    \n/tool e-mail send to=\"EMAIL\" subject \"NAME Mikro-\
+    backup \$d \$t\" file=\"NAME.backup\";\r\
+    \n:delay 10s;"

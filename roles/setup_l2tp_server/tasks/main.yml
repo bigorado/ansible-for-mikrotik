@@ -1,0 +1,10 @@
+---
+- name: Setup L2TP server
+  community.routeros.command:
+    commands:
+#Включение l2tp сервера
+      - /interface l2tp-server server set enabled=yes keepalive-timeout=60 use-ipsec=yes ipsec-secret={{ipsec_secret}}
+#Настройка l2tp сервера для VPN на ПК
+      - /ppp profile add local-address={{address_new}} name=l2tp remote-address=dhcp
+#Настройка l2tp сервера для VPN туннелей
+      - /ppp profile add name=l2tp-clients

@@ -1,0 +1,17 @@
+---
+- name: Setup CAPsMAN
+  community.routeros.command:
+    commands:
+# Настройка роуминга в микротик
+      - /caps-man manager set enabled=yes
+      - /caps-man channel add band=2ghz-b/g/n frequency={{frequency_2g}} name=channel2 tx-power={{tx-power_2g}}
+      - /caps-man channel add band=5ghz-a/n/ac frequency={{frequency_5g}} name=channel5 tx-power={{tx-power_5g}}
+      - /caps-man datapath add bridge=bridge client-to-client-forwarding=yes name=datapath1
+      - /caps-man security add authentication-types=wpa2-psk encryption=aes-ccm group-encryption=aes-ccm name=security1 passphrase={{wifi_pass}}
+      - /caps-man configuration add channel=channel2 datapath=datapath1 mode=ap name=cfg2 rx-chains=0,1,2,3 security=security1 ssid={{wifi_name}} tx-chains=0,1,2,3
+      - /caps-man add channel=channel5 datapath=datapath1 mode=ap name=cfg5 rx-chains=0,1,2,3 security=security1 ssid={{wifi_name}} tx-chains=0,1,2,3
+      - /caps-man provisioning add action=create-dynamic-enabled hw-supported-modes=gn master-configuration=cfg2
+      - /caps-man provisioning add action=create-dynamic-enabled hw-supported-modes=gn master-configuration=cfg5
+      - /interface wireless cap set caps-man-addresses={{address_new}} discovery-interfaces=bridge enabled=yes interfaces={{wlan_interface}}
+      - /ip firewall filter add action=accept chain=input dst-address-type=local src-address-type=local comment="UnblockCapsman" disabled=no
+      - /ip firewall filter move [find comment="UnblockCapsman"] 1

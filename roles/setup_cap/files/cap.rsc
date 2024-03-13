@@ -1,0 +1,9 @@
+      - /caps-man manager set enabled=yes
+      - /system identity set name=NAME
+      - /ip address add address=ADDRESS/24 comment=defconf interface=bridge network=NETWORK
+      - /interface wireless cap set bridge=bridge discovery-interfaces=bridge enabled=yes interfaces=WLAN
+      - /ip firewall filter add action=accept chain=input dst-address-type=local src-address-type=local comment="UnblockCapsman" disabled=no
+      - /ip firewall filter move [find comment="UnblockCapsman"] 1
+      - /ip service set www address=192.168.0.0/16,10.0.0.0/8
+      - /ip service set ssh address=192.168.0.0/16,10.0.0.0/8
+      - /ip service set winbox address=192.168.0.0/16,10.0.0.0/8

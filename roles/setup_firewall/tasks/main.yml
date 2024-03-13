@@ -1,0 +1,26 @@
+---
+- name: Firewall rules
+  community.routeros.command:
+    commands:
+# Настройка Firewall
+      - /ip firewall filter remove numbers=1,2,3,4,5,6,7,8,9,10,11
+      - /ip firewall filter add action=accept chain=input comment="Access to Mikrotik" dst-port={{winbox_port}} protocol=tcp
+      - /ip firewall filter add action=accept chain=input comment="Access to SSH  Mikrotik for Ansible" dst-port={{ansible_ssh_port}} protocol=tcp
+      - /ip firewall filter add action=reject chain=input connection-state=new protocol=tcp reject-with icmp-network-unreachable tcp-flags=fin,syn
+      - /ip firewall filter add action=accept chain=input comment="VPN ports" dst-port=1701,500,4500 protocol=udp
+      - /ip firewall filter add action=accept chain=input dst-port=1723 protocol=tcp
+      - /ip firewall filter add action=accept chain=input protocol=gre
+      - /ip firewall filter add action=accept chain=input connection-state=established
+      - /ip firewall filter add action=accept chain=input connection-state=related
+      - /ip firewall filter add action=drop chain=input connection-state=invalid
+      - /ip firewall filter add action=accept chain=input comment="Open PING" icmp-options=8:0-255 protocol=icmp
+      - /ip firewall filter add action=accept chain=input icmp-options=11:0-255 protocol=icmp
+      - /ip firewall filter add action=accept chain=input icmp-options=3:4 protocol=icmp
+      - /ip firewall filter add action=accept chain=input comment="Port allowing traffic" dst-port=53 protocol=udp src-address={{network_new}}/{{network_mask_fw}}
+      - /ip firewall filter add action=drop chain=input
+      - /ip firewall filter add action=accept chain=forward connection-state=established
+      - /ip firewall filter add action=accept chain=forward connection-state=related
+      - /ip firewall filter add action=drop chain=forward connection-state=invalid
+      - /ip firewall filter add action=accept chain=forward comment="Network access" src-address {{network_new}}/{{network_mask_fw}}
+      - /ip firewall filter add action=accept chain=forward dst-address={{network_new}}/{{network_mask_fw}}
+      - /ip firewall filter add action=drop chain=forward

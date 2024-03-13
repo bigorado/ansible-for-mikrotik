@@ -1,0 +1,3 @@
+/interface wireless set [ find default-name=wlan1 ] band=2ghz-b/g/n channel-width=20/40mhz-XX disabled=no distance=indoors frequency=2417 installation=indoor mode=ap-bridge ssid=NAMEWIFI wireless-protocol=802.11
+/interface wireless set [ find default-name=wlan2 ] band=5ghz-a/n/ac channel-width=20/40/80mhz-XXXX disabled=no distance=indoors installation=indoor mode=ap-bridge ssid=NAMEWIFI wireless-protocol=802.11
+/interface wireless security-profiles set [ find default=yes ] authentication-types=wpa-psk,wpa2-psk mode=dynamic-keys supplicant-identity=MikroTik wpa2-pre-shared-key=12345678 wpa-pre-shared-key=12345678

@@ -1,0 +1,7 @@
+---
+- name: Reboot sheldure
+  community.routeros.command:
+    commands:
+# Настройка NAT для мониторинга
+      - /system script add dont-require-permissions=no name=reboot owner={{new_user_name}} policy=ftp,reboot,read,write,policy,test,password,sniff,sensitive,romon source="/system reboot"
+      - /system script run reboot

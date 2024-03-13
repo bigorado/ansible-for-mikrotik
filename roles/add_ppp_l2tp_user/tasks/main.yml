@@ -1,0 +1,6 @@
+---
+- name: Add ppp l2tp user
+  community.routeros.command:
+    commands:
+#Создание учетки l2tp для подключения к сети через VPN
+      - /ppp secret add name={{ppp_login}} profile=l2tp service=l2tp password={{ppp_pass}}

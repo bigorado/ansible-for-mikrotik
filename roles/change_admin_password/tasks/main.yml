@@ -1,0 +1,6 @@
+---
+- name: Change administrator password
+  community.routeros.command:
+    commands:
+#Изменить пароль администратора
+      - /password new-password={{new_admin_pass}} old-password={{old_admin_pass}} confirm-new-password={{new_admin_pass}}

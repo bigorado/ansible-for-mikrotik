@@ -1,0 +1,9 @@
+---
+- name: Add new user
+  community.routeros.command:
+    commands:
+# Добавить нового пользователя
+      - /use add name={{new_user_name}} password={{new_user_pass}} group={{group_user}}
+#Изменить пароль администратора
+#      - /password new-password={{new_admin_pass}} old-password="" confirm-new-password={{new_admin_pass}}
+

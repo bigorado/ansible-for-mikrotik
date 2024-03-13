@@ -1,0 +1,25 @@
+/ip firewall filter
+add action=accept chain=input dst-port=8291 protocol=tcp
+add action=accept chain=input dst-port=465 protocol=tcp
+add action=accept chain=input dst-port=22 protocol=tcp
+add action=accept chain=input dst-port=389 protocol=tcp
+add action=accept chain=input comment=UnblockCapsman dst-address-type=local \
+    src-address-type=local
+add action=reject chain=input connection-state=new protocol=tcp reject-with=\
+    tcp-reset tcp-flags=fin,syn
+add action=accept chain=input dst-port=1701,500,4500 protocol=udp
+add action=accept chain=input dst-port=1723 protocol=tcp
+add action=accept chain=input protocol=gre
+add action=accept chain=input connection-state=established
+add action=accept chain=input connection-state=related
+add action=drop chain=input connection-state=invalid
+add action=accept chain=input icmp-options=8:0-255 protocol=icmp
+add action=accept chain=input dst-port=53 protocol=udp src-address=\
+    192.0.0.0/8
+add action=drop chain=input
+add action=accept chain=forward connection-state=established
+add action=accept chain=forward connection-state=related
+add action=drop chain=forward connection-state=invalid
+add action=accept chain=forward src-address=192.0.0.0/8
+add action=accept chain=forward dst-address=192.0.0.0/8
+add action=drop chain=forward

@@ -1,0 +1,19 @@
+---
+#Создание учетки ppp и l2tp тунеля до сервера клиента
+- hosts: router_l2tp_server_client
+ vars_files:
+   - group_vars/static_vars.yml
+   - group_vars/dinamic_vars.yml
+routers_new
+  gather_facts: false
+  roles:
+    - client_setup_l2tp_tun_to_srv
+
+#Создание учетки ppp и l2tp тунеля до клиентского сервера
+- hosts: routers_new
+  vars_files:
+    - group_vars/static_vars.yml
+    - group_vars/dinamic_vars.yml
+  gather_facts: false
+  roles:
+    - client_setup_l2tp_tun_from_client

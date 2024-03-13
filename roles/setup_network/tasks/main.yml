@@ -1,0 +1,24 @@
+---
+- name: IP - DHCP settings
+  community.routeros.command:
+    commands:
+# Настройка сети
+      - /interface bridge add name=bridge1
+      - /interface bridge port add bridge=bridge1 interface=ether2
+      - /interface bridge port add bridge=bridge1 interface=ether3
+      - /interface bridge port add bridge=bridge1 interface=ether4
+      - /interface bridge port add bridge=bridge1 interface=ether5
+      - /interface bridge port add bridge=bridge1 interface=ether6
+      - /interface bridge port add bridge=bridge1 interface=ether7
+      - /interface bridge port add bridge=bridge1 interface=ether8
+      - /interface bridge port add bridge=bridge1 interface=ether9
+      - /interface bridge port add bridge=bridge1 interface=ether10
+      - /ip address add address={{address_new}}/{{network_mask_lan}} interface=bridge network={{network_new}}
+      - /ip dhcp-server network remove numbers=1
+      - /ip pool remove default-dhcp
+      - /ip pool add name=dhcp ranges={{pool_range_start}}-{{pool_range_end}}
+      - /ip dhcp-server add address-pool=dhcp interface=bridge lease-time=10m name=defconf
+      - /ip dhcp-server network add address={{network_new}}/{{network_mask_lan}} dns-server={{address_new}},{{dns1}},{{dns2}} gateway={{address_new}} netmask={{network_mask_lan}}
+
+#При необходимости удалить стандартный IP mikrotik убрать коммент
+#      - /ip address remove [find network=192.168.88.0]

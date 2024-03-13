@@ -1,0 +1,54 @@
+---
+#Динамические переменные в play-book configure_new_router.yml
+#Создание нового пользователя
+new_user_name: ansible
+new_user_pass: PASSWORD
+#Данные провайдера PPPOE
+pppoe_name: PPPOE
+pppoe_login: test
+pppoe_pass: test
+#Группа доступа пользователя, есть full, write, read, даем полные права, так как потребуется удаление базовых конфигураций
+group_user: full
+#Установить имя устройства
+identity_name: MIKROTIK
+#Установить IP устройства
+address_new: IPADDRESS
+#Указать подсеть, пример 192.168.0.0
+network_new: IPADDRESS
+#Установить начало раздачи IP пример 192.168.0.50
+pool_range_start: IPADDRESS
+#Установить конец раздачи IP пример 192.168.0.150
+pool_range_end: IPADDRESS
+#Установить имя WiFi и пароль
+wifi_name: WIFI
+wifi_pass: PASSWORD
+#Настройка логина, пароля и маршрута l2tp туннеля создается на сервере l2tp
+l2tp_user: USERNAME
+l2tp_pass: PASSWORD
+l2tp_gateway_to_srv: IPADDRESS
+#Настройка логина, пароля и маршрута на стороне сервера
+l2tp_gateway_to_client: IPADDRESS
+#Содание пользователя l2tp для подключения с ПК
+ppp_login: admin
+ppp_pass: PASSWORD
+
+#Настройка туннеля между сетями клиентов в play-book configure_new_client_tun.yml
+client_srv: IPADDRESS
+#Локальный адрес
+l2tp_gateway_to_srv_client: IPADDRESS
+#Удаленный адрес
+l2tp_gateway_to_client_client: IPADDRESS
+#Подсеть клиента
+network_server_client: IPADDRESS
+
+#Настройки уведомлений в telegram
+netwatch_down: host down
+netwatch_up: host up
+ip_netwatch_host: IPADDRESS
+
+#Установка имени CAP в play-book configure_new_capsman.yml
+cap_name: new-cap-name
+#Установка IP для CAP
+addr_cap_new: IPADDRESS
+#Если есть 2.4 и 5 ггц wifi то оставляем так, если нет, удаляем wlan2
+wlan_interface: wlan1,wlan2

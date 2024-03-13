@@ -1,0 +1,15 @@
+/ip firewall filter
+add action=drop chain=input comment="drop winbox brute forcers" dst-port=8291 \
+    protocol=tcp src-address-list=winbox_blacklist
+add action=add-src-to-address-list address-list=winbox_blacklist \
+    address-list-timeout=4w2d chain=input connection-state=new dst-port=8291 \
+    protocol=tcp src-address-list=winbox_stage3
+add action=add-src-to-address-list address-list=winbox_stage3 \
+    address-list-timeout=5m chain=input connection-state=new dst-port=8291 \
+    protocol=tcp src-address-list=winbox_stage2
+add action=add-src-to-address-list address-list=winbox_stage2 \
+    address-list-timeout=8m chain=input connection-state=new dst-port=8291 \
+    protocol=tcp src-address-list=winbox_stage1
+add action=add-src-to-address-list address-list=winbox_stage1 \
+    address-list-timeout=10m chain=input connection-state=new dst-port=8291 \
+    protocol=tcp
