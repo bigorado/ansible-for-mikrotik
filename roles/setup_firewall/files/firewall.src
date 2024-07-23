@@ -1,4 +1,10 @@
+/ip firewall address-list
+add list=allow address=0.0.0.0 comment="allow"
+add list=allow address=0.0.0.0 comment="allow"
+add list=allow address=0.0.0.07 comment="allow"
+add list=allow address=0.0.0.0 comment="allow"
 /ip firewall filter
+add action=accept chain=input comment="allow trusted IPs" src-address-list=allow
 add action=accept chain=input dst-port=8291 protocol=tcp
 add action=accept chain=input dst-port=465 protocol=tcp
 add action=accept chain=input dst-port=22 protocol=tcp
