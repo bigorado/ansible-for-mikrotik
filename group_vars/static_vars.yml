@@ -32,6 +32,7 @@ network_mask_lan: 24
 network_server: IPADDRESS
 #Создание белого списка
 allow_list: NAMEWHITELIST
+allow_list_comment: COMMENT
 #Список адресов для добавление в services
 ip_office: IPADDRESS
 ip_rezerv1: IPADDRESS
