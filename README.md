@@ -8,9 +8,9 @@
    
 Необходима установка модулей с ansible-galaxy для возможности управления устройствами на ROS:
 
-2) [ansible.netcommon](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/network_cli_connection.html#ansible-collections-ansible-netcommon-network-cli-connection/)
+2) [ansible.netcommon](https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/network_cli_connection.html#ansible-collections-ansible-netcommon-network-cli-connection/) ```ansible-galaxy collection install ansible.netcommon```
 
-3) [community.routeros](https://galaxy.ansible.com/ui/repo/published/community/routeros/) ```shellansible-galaxy collection install community.routeros```
+3) [community.routeros](https://galaxy.ansible.com/ui/repo/published/community/routeros/) ```ansible-galaxy collection install community.routeros```
 
 # Подготовка mikrotik
 
